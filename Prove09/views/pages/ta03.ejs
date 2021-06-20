@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../includes/header.ejs %>
+  <link rel="stylesheet" href="/stylesheets/ta03.css">
+</head>
+
+<body>
+  <% include ../includes/nav.ejs %>
+  <div class="jumbotron text-center">
+    <div class="container">
+      <h1><%= title %></h1>
+    </div>
+  </div>
+  <div class="container">
+    <h2>Product Listing</h2>
+
+    <div class="top-section">
+      <!-- <form action="/search" method="get">
+        <input type="text" name="query" id="query" value=<%= query %>>
+        <button type="submit">Search</button>
+      </form> -->
+      
+      <div action="/search" class="pagination-view">
+        <a href="/first" class="page-button">First</a>
+        <a href="/prev" class="page-button">Prev</a>
+        <div class="page-label"><%= page %> / <%= lastPage %></div>
+        <a href="/next" class="page-button">Next</a>
+        <a href="/last" class="page-button-last">Last</a>
+      </div>
+    </div>
+
+    <div class="product-container">
+      <% for (product of products) { %>
+      <div class="product">
+        <div>
+          <h3><%= product.name %></h3>
+          <!-- <div class="product-image">
+            <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
+          </div> -->
+        </div>
+        <div>
+          <p>Url: <%= product.url %></p>
+        </div>
+      </div>
+      <% } %>
+    </div>
+
+    <% if (products.length == 0) { %>
+      <h2>No Products Found!</h2>
+    <% } %>
+  </div>
+
+
+</body>
+
+</html>
